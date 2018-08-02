@@ -1,0 +1,32 @@
+lex
+词法分析
+switch ch{
+case isdig(ch)
+case isident(ch)
+case isstring(ch)
+case ...
+}
+匹配出相应的文法规则就好了
+
+yacc工作流程
+(1)parser函数为入口函数
+(2)parser每次调用lex函数获取一个token
+(3)parser根据这个token进行文法匹配
+
+
+1.语法规则
+SELECT_STATEMENT:
+    SELECT COLUMN_NAMES FROM_CLAUSES
+    {
+        $$.FIELDS = $1
+        $$.SOURCES = $2
+    }
+$$  表示当前非终结符类型
+$%d 表示规约文法从左到右的符号类型。从1开始
+
+
+2.无法调试，删除生成的文件标记
+
+3.文法匹配失败，token码匹配不正确。状态跳转失败
+
+4.shift/reduce 问题。左右结合不明确，需标记left,right
